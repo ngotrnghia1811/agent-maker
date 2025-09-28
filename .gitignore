@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+*.cover
+
+# Compiled agent packages (generated output)
+compiled_agents/
+
+# Storage (auth tokens, test results, screenshots, runtime outputs)
+storage/*_storage_state.json
+storage/test_results/
+storage/live_test_results/
+storage/gemini_test_results/
+storage/*.png
+storage/srt_test_cli_recording.txt
+storage/srt_test_output.txt
+
+# Environment
+.env
+
+# Camoufox browser binary cache (downloaded at install)
+# Stored in ~/Library/Caches/camoufox, not in repo
+
+# Backup files
+*.bak
+
+# References (v1 codebase, kept for development only)
+_references/
