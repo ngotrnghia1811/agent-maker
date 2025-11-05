@@ -57,7 +57,7 @@ deployable package — your choice.
 ## Installation
 
 ```bash
-git clone <repo-url> agent-maker
+git clone https://github.com/ngotrnghia1811/agent-maker
 cd agent-maker
 python -m venv .venv
 source .venv/bin/activate
@@ -170,59 +170,6 @@ async def main():
 asyncio.run(main())
 ```
 
-## Architecture
-
-```
-universal_agents/
-├── core/               # Shared abstractions
-│   ├── base_agent.py   # BaseChatAgent (ABC) — async chat(), history, stats
-│   ├── config.py       # BaseConfig → BrowserConfig, APIConfig
-│   ├── types.py        # Message, ConversationTurn, TurnResult, AgentStats
-│   ├── history.py      # Sliding-window conversation history
-│   ├── exceptions.py   # AgentError → BrowserError, APIError, CLIError
-│   └── retry.py        # @retry with exponential backoff
-│
-├── browser/            # Playwright browser automation layer
-│   ├── base_browser_agent.py   # Shared chat loop: input → submit → wait → extract
-│   ├── browser_manager.py      # Lifecycle, stealth mode, API interception
-│   ├── dom.py                  # DOM utilities
-│   └── response_detector.py    # 2-phase response detection
-│
-├── api/                # HTTP API layer
-│   └── base_api_agent.py       # httpx-based with sync/streaming support
-│
-├── cli/                # CLI subprocess layer
-│   └── base_cli_agent.py
-│
-├── providers/          # Provider implementations
-│   ├── claude/         # Chat, Data, Translator agents
-│   ├── gemini/         # Chat, Data, Translator agents
-│   ├── gpt/            # Chat agent
-│   ├── pplx/           # Chat agent (Perplexity)
-│   ├── openai/         # Chat, Data agents (API)
-│   ├── openrouter/     # Chat, Data agents (API)
-│   └── copilot/        # Chat agent (CLI)
-│
-├── compiler/           # The agent-make pipeline
-│   ├── compiler.py             # AgentCompiler orchestrator
-│   ├── __main__.py             # `agent-make` CLI entrypoint
-│   ├── question_flow.py        # Interactive interview with skip logic
-│   ├── capability_resolver.py  # Maps requirements → provider + agent class
-│   ├── config_builder.py       # Builds transport-specific config dicts
-│   ├── agent_assembler.py      # Script generation + dynamic instantiation
-│   ├── agent_packager.py       # Deployable package emission
-│   ├── compiler_llm.py         # LLM for interpreting free-text answers
-│   ├── auth_detector.py        # Detects available credentials
-│   └── requirements.py         # UserRequirements dataclass
-│
-└── monitor/            # Multi-agent monitoring
-    ├── agent_registry.py       # Central registry
-    ├── monitored_agent.py      # Event-emitting agent wrapper
-    ├── events.py               # Event types
-    ├── dashboard.py            # Real-time terminal dashboard
-    └── reporter.py             # JSON/text reports
-```
-
 ## Providers
 
 | Provider   | Transport | Agents                 | Thinking         | Notes                                         |
@@ -275,4 +222,4 @@ See the [`examples/`](examples/) directory:
 
 ## License
 
-Private — all rights reserved.
+MIT
